@@ -1,11 +1,16 @@
 #ifndef NUMBER_H
 #define NUMBER_H
 #include <string>
-#include <sstream>
+
+#include "Atom.h"
+#include "Var.h"
 
 #include <iostream>
 
+#define DEBUG
+
 using std::string;
+
 
 class Number{
 public:
@@ -24,16 +29,40 @@ public:
     //}
     string symbol(){return tostring;}
     string value(){return tostring;}
+    // 防呆未做 字串 數字
     bool match(Number num){
-        std::cout<< tostring << "  " << num.value();
+        #ifdef DEBUG
+        std::cout<< "Number Number match"<< tostring << "  " << num.value()<<std::endl;
+        #endif
         if(tostring==num.value())
+            return true;
+        else
+            return false;
+    }
+
+    bool match(Atom atom){
+        #ifdef DEBUG
+        std::cout<< "Number Atom match"<<tostring << "  " << atom.value()<<std::endl;
+        #endif
+        if(tostring==atom.value())
+            return true;
+        else
+            return false;
+    }
+
+    bool match(Var var){
+        _var = var.value();
+        #ifdef DEBUG
+        std::cout<< "Number Var match"<<tostring << "  " << var.value()<<std::endl;
+        #endif
+        if(_var[0]>64 && _var[0]<91)
             return true;
         else
             return false;
     }
 private:
     string tostring;
+    string _var;
 };
-
 
 #endif
