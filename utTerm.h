@@ -1,8 +1,8 @@
 #ifndef UTTERM_H
 #define UTTERM_H
-#include "Number.h"
-#include "Atom.h"
-#include "Var.h"
+#include "number.h"
+#include "atom.h"
+#include "variable.h"
 
 #include <iostream>
 
@@ -38,9 +38,9 @@ TEST (Number, matchFailureDiffConstant) {
 }
 //?- 25=X.
 //true.
-TEST (Number, matchSuccessToVar) {
+TEST (Number, matchSuccessToVariable) {
     Number N(25);
-    Var X("X");
+    Variable X("X");
     ASSERT_TRUE(N.match(X));  
 }
 
@@ -54,47 +54,47 @@ TEST (Number, matchSuccessToVar) {
 
 // ?- tom = X.
 // X = tom.
-TEST (Atom, matchSuccessToVar) {
+TEST (Atom, matchSuccessToVariable) {
 
 }
 
 // ?- X=tom, tom=X.
 // X = tom.
-TEST (Atom, matchSuccessToVarInstantedToDiffConstant) {
+TEST (Atom, matchSuccessToVariableInstantedToDiffConstant) {
 
 }
 
 // ?- X=jerry, tom=X.
 // false.
-TEST (Atom, matchFailureToVarInstantedToDiffConstant) {
+TEST (Atom, matchFailureToVariableInstantedToDiffConstant) {
 
 }
 
 // ?- X = 5.
 // X = 5.
-TEST (Var, matchSuccessToNumber) {
+TEST (Variable, matchSuccessToNumber) {
  
 }
 
 // ?- X=25, X= 100.
 // false.
-TEST (Var, matchFailureToTwoDiffNumbers) {
+TEST (Variable, matchFailureToTwoDiffNumbers) {
 
 }
 
 // ?- X=tom, X= 25.
 // false.
-TEST (Var, matchSuccessToAtomThenFailureToNumber) {
+TEST (Variable, matchSuccessToAtomThenFailureToNumber) {
 
 }
 //?- tom=X, 25=X.
 //false.
-TEST (Var, matchSuccessToAtomThenFailureToNumber2) {
+TEST (Variable, matchSuccessToAtomThenFailureToNumber2) {
 
 }
 //?- X=tom, X=tom.
 //true.
-TEST(Var, reAssignTheSameAtom){
+TEST(Variable, reAssignTheSameAtom){
 
 }
 #endif

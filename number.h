@@ -2,8 +2,8 @@
 #define NUMBER_H
 #include <string>
 
-#include "Atom.h"
-#include "Var.h"
+#include "atom.h"
+#include "variable.h"
 
 #include <iostream>
 
@@ -50,7 +50,7 @@ public:
             return false;
     }
 
-    bool match(Var var){
+    bool match(Variable var){
         _var = var.value();
         #ifdef DEBUG
         std::cout<< "Number Var match"<<tostring << "  " << var.value()<<std::endl;

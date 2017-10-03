@@ -6,10 +6,10 @@
 
 using std::string;
 
-class Var{
+class Variable{
 public:
     //Number(string n, string s):_value(n), _symbol(s){}
-    Var(string s):_value(s),_symbol(s){}
+    Variable(string s):_value(s),_symbol(s){}
     string value(){return _value;}
     string symbol(){return _symbol;}
 
