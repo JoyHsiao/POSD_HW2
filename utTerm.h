@@ -7,19 +7,20 @@
 
 //test Number.value()
 TEST (Number,ctor) {
-    Number n("123");
-    ASSERT_EQ("123", n.value());
+    Number N(123);
+    ASSERT_EQ("123", N.value());
 //    std::cout<<n.value();
 }
-////test Number.symbol()
-//TEST (Number, symbol) {
-//    Number n;
-//    Assert_EQ(n, Number.symbol);
-//}
+//test Number.symbol()
+TEST (Number, symbol) {
+    Number S(123);
+    ASSERT_EQ("123", S.symbol());
+}
 //?- 25=25.
 //true.
 TEST (Number, matchSuccess) {
-
+    Number N1(25), N2(25);
+    ASSERT_TRUE(N1.match(N2));
 }
 //?- 25=0.
 //false.
