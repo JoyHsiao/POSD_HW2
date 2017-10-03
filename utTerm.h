@@ -1,14 +1,21 @@
 #ifndef UTTERM_H
 #define UTTERM_H
+#include "Number.h"
+
+
+#include <iostream>
 
 //test Number.value()
 TEST (Number,ctor) {
-
+    Number n("123");
+    ASSERT_EQ("123", n.value());
+//    std::cout<<n.value();
 }
-//test Number.symbol()
-TEST (Number, symbol) {
-
-}
+////test Number.symbol()
+//TEST (Number, symbol) {
+//    Number n;
+//    Assert_EQ(n, Number.symbol);
+//}
 //?- 25=25.
 //true.
 TEST (Number, matchSuccess) {

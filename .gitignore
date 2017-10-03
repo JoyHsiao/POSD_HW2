@@ -31,3 +31,8 @@
 *.out
 *.app
 .vscode/
+
+*.cscope.*
+cscope.*
+tags
+HW2
