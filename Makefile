@@ -11,6 +11,11 @@ hw2.o: hw2.cpp utTerm.h container.h number.h atom.h variable.h
 	g++ -std=c++11 -c hw2.cpp
 
 clean:
-	rm -f *.o hw
+ifeq (${OS}, Windows_NT)
+	del *.o hw2
+else
+	rm -f *.o hw2
+endif
+
 stat:
 	wc *.h *.cpp
