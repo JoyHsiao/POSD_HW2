@@ -81,26 +81,37 @@ TEST (Atom, matchFailureToVariableInstantedToDiffConstant) {
 // ?- X = 5.
 // X = 5.
 TEST (Variable, matchSuccessToNumber) {
-//    Variable X("X");
-//    Number N(5);
-//    ASSERT_TRUE(X.match(N));
+    Variable X("X");
+    Number N(5);
+    ASSERT_TRUE(X.match(N));
 }
 
 // ?- X=25, X= 100.
 // false.
 TEST (Variable, matchFailureToTwoDiffNumbers) {
-
+    Variable X("X");
+    Number N1(25),N2(100);
+    ASSERT_TRUE(X.match(N1));
+    ASSERT_FALSE(X.match(25));
 }
 
 // ?- X=tom, X= 25.
 // false.
 TEST (Variable, matchSuccessToAtomThenFailureToNumber) {
-
+    Variable X("X");
+    Atom tom("tom");
+    Number N(25);
+    ASSERT_TRUE(X.match(tom));
+    ASSERT_FALSE(X.match(25));
 }
 //?- tom=X, 25=X.
 //false.
 TEST (Variable, matchSuccessToAtomThenFailureToNumber2) {
-
+    Atom tom("tom");
+    Variable X("X");
+    Number N(25);
+    ASSERT_TRUE(tom.match(X));
+    ASSERT_FALSE(N.match(X));
 }
 //?- X=tom, X=tom.
 //true.
