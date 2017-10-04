@@ -10,7 +10,7 @@ public:
 
     bool match(Container num){
         #ifdef DEBUG
-        std::cout<< "Atom match: "<< _value << "  " << num.value()<< " "<< num.name << std::endl;
+        std::cout<< "Atom match: "<< _value << "  " << num._value<< " "<< num.name <<" assign:"<< num._assignable<< std::endl;
         #endif
         if(num.name == "number"){
             #ifdef DEBUG
@@ -29,7 +29,7 @@ public:
             #ifdef DEBUG
             std::cout<< "Atom match: "<< num.name << " assig:" <<  ret<<" "<< num._value << " " << _value<< std::endl;
             #endif
-            if(!ret && num._value!=_value){
+            if(ret==false && num._value!=_value){
                 #ifdef DEBUG
                 std::cout<< "Atom match: false"<< std::endl;
                  #endif
@@ -39,21 +39,13 @@ public:
                 num._value =_value;
                 num._assignable = false;
                 #ifdef DEBUG
-                std::cout<< "Atom match: true."<< num._value <<" "<< _value << std::endl;
+                std::cout<< "Atom match: true. "<< num._value <<" "<< _value <<" " << num.name << " assign: " << num._assignable << std::endl;
                  #endif
             }
         }               
         return true;
     }
 
-    //string match(Container num){
-    //    #ifdef DEBUG
-    //    std::cout<< "Number match"<< _value << "  " << num.value()<< num.name << std::endl;
-    //    #endif
-    //    if(num.name == "variable")
-    //        num.value()=_value;    
-    //    return num.value();
-    //}
 private:
 };
 
