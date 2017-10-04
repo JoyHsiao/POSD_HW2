@@ -109,9 +109,15 @@ TEST (Variable, matchSuccessToAtomThenFailureToNumber) {
 TEST (Variable, matchSuccessToAtomThenFailureToNumber2) {
     Atom tom("tom");
     Variable X("X");
+    Variable Y("Y");
     Number N(25);
+    Number Z(29);
+    tom.match(Y);
     ASSERT_TRUE(tom.match(X));
     EXPECT_FALSE(N.match(X));
+    EXPECT_FALSE(Z.match(X));
+    EXPECT_FALSE(Z.match(Y));
+    EXPECT_FALSE(N.match(Y));
 }
 //?- X=tom, X=tom.
 //true.
