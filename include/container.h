@@ -15,6 +15,9 @@ public:
         _value = std::to_string(s);
         _symbol = std::to_string(s);
         name = "number";
+    #ifdef DEBUG
+        std::cout<< __FUNCTION__<<": "<< name << std::endl;
+    #endif
     }
     Container(string s):_value(s), _symbol(s){
         if(_symbol[0]>64 && _symbol[0]<91)

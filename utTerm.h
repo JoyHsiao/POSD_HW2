@@ -92,7 +92,7 @@ TEST (Variable, matchFailureToTwoDiffNumbers) {
     Variable X("X");
     Number N1(25),N2(100);
     ASSERT_TRUE(X.match(N1));
-    ASSERT_FALSE(X.match(25));
+    ASSERT_FALSE(X.match(N2));
 }
 
 // ?- X=tom, X= 25.
@@ -102,22 +102,16 @@ TEST (Variable, matchSuccessToAtomThenFailureToNumber) {
     Atom tom("tom");
     Number N(25);
     ASSERT_TRUE(X.match(tom));
-    ASSERT_FALSE(X.match(25));
+    ASSERT_FALSE(X.match(N));
 }
 //?- tom=X, 25=X.
 //false.
 TEST (Variable, matchSuccessToAtomThenFailureToNumber2) {
     Atom tom("tom");
     Variable X("X");
-    Variable Y("Y");
     Number N(25);
-    Number Z(29);
-    tom.match(Y);
     ASSERT_TRUE(tom.match(X));
     EXPECT_FALSE(N.match(X));
-    EXPECT_FALSE(Z.match(X));
-    EXPECT_FALSE(Z.match(Y));
-    EXPECT_FALSE(N.match(Y));
 }
 //?- X=tom, X=tom.
 //true.
