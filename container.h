@@ -25,8 +25,10 @@ public:
         std::cout<< __FUNCTION__<<": "<< _symbol[0] <<" "<< _value[0]<< " "<< name << std::endl;
     #endif
     }
-    string symbol(){return _symbol;}
-    string value(){return _value;}
+    string symbol(){
+return _symbol;}
+    string value(){
+return _value;}
     string _value;
     string _symbol;
     string name;

@@ -27,7 +27,7 @@ public:
         else{
             bool ret = num._assignable;
             #ifdef DEBUG
-            std::cout<< "Atom match: "<< num.name << " assig:" <<  ret<<" "<< num._value << " " << _value<< std::endl;
+            std::cout<< "Atom match: "<< num.name << " assig:" << num._assignable<<" "<< num._value << " " << _value<< std::endl;
             #endif
             if(ret==false && num._value!=_value){
                 #ifdef DEBUG

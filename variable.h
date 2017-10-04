@@ -1,5 +1,5 @@
-#ifndef VAR_H
-#define VAR_H
+#ifndef VARIABLE_H
+#define VARIABLE_H
 
 #include "container.h"
 
