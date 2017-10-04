@@ -1,11 +1,11 @@
-all: HW2
+all: hw2
 
-HW2: HW2.o
-	g++ -o HW2 HW2.o -lgtest -lpthread
-HW2.o: HW2.cpp utTerm.h container.h number.h atom.h variable.h
-	g++ -std=c++11 -c HW2.cpp
+hw2: hw2.o
+	g++ -o hw2 hw2.o -lgtest -lpthread
+hw2.o: hw2.cpp utTerm.h container.h number.h atom.h variable.h
+	g++ -std=c++11 -c hw2.cpp
 
 clean:
-	rm -f *.o HW
+	rm -f *.o hw
 stat:
 	wc *.h *.cpp
