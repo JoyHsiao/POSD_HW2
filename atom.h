@@ -1,49 +1,60 @@
 #ifndef ATOM_H
 #define ATOM_H
-#include <string>
 
-#include <iostream>
+#include "container.h"
 
-#define DEBUG
 
-using std::string;
-
-//class Number;
-//#include "Number.h"
-
-class Atom{
+class Atom: public Container{
 public:
-    //Number(string n, string s):_value(n), _symbol(s){}
-    Atom(string s):_value(s),_symbol(s){}
-    string value(){return _value;}
-    string symbol(){return _symbol;}
+    Atom(string s):Container(s){}
 
+    bool match(Container num){
+        #ifdef DEBUG
+        std::cout<< "Atom match: "<< _value << "  " << num.value()<< " "<< num.name << std::endl;
+        #endif
+        if(num.name == "number"){
+            #ifdef DEBUG
+            std::cout<< "Atom match: "<< num.name << std::endl;
+            #endif
+            return false;
+        }
+        else if(num.name == "atom" && _value != num._value){
+            #ifdef DEBUG
+            std::cout<< "Atom match: "<< num.name << std::endl;
+            #endif
+            return false;
+        }
+        else{
+            bool ret = num._assignable;
+            #ifdef DEBUG
+            std::cout<< "Atom match: "<< num.name << " assig:" <<  ret<<" "<< num._value << " " << _value<< std::endl;
+            #endif
+            if(!ret && num._value!=_value){
+                #ifdef DEBUG
+                std::cout<< "Atom match: false"<< std::endl;
+                 #endif
+                return false;
+            }
+            else{
+                num._value =_value;
+                num._assignable = false;
+                #ifdef DEBUG
+                std::cout<< "Atom match: true."<< num._value <<" "<< _value << std::endl;
+                 #endif
+            }
+        }               
+        return true;
+    }
 
-
-
-    //string const _value;
-    //string value(){
-    //    for(int i=0; i<_value.size(); i++){
-    //        if(_value[i]<47 || _value[i]>58)
-    //            return _value+"false";
-    //        else
-    //            return _value;
-    //    }
+    //string match(Container num){
+    //    #ifdef DEBUG
+    //    std::cout<< "Number match"<< _value << "  " << num.value()<< num.name << std::endl;
+    //    #endif
+    //    if(num.name == "variable")
+    //        num.value()=_value;    
+    //    return num.value();
     //}
-
-   // bool match(Number num){
-   // #ifdef DEBUG
-   //     std::cout<< _value << "  " << num.value();
-   // #endif
-   //     if(_value[0]>64 && _value[0]<91 && value==num.value()){
-   //         return true;
-   //     }
-   //     else
-   //         return false;   
-   // }
 private:
-    string _value;
-    string const _symbol;
 };
 
 

@@ -1,10 +1,9 @@
 #ifndef UTTERM_H
 #define UTTERM_H
+#include "container.h"
 #include "number.h"
 #include "atom.h"
 #include "variable.h"
-
-#include <iostream>
 
 //test Number.value()
 TEST (Number,ctor) {
@@ -26,13 +25,13 @@ TEST (Number, matchSuccess) {
 //?- 25=0.
 //false.
 TEST (Number, matchFailureDiffValue) {
-    Number N1(25), N2(26);
+    Number N1(25), N2(0);
     ASSERT_FALSE(N1.match(N2));
 }
 //?- 25=tom.
 //false.
 TEST (Number, matchFailureDiffConstant) {
-    Number N(33);
+    Number N(25);
     Atom tom("tom");
     ASSERT_FALSE(N.match(tom));
 }
@@ -46,34 +45,45 @@ TEST (Number, matchSuccessToVariable) {
 
 //?- tom=25.
 //false.
-//TEST (Atom, matchFailureDiffConstant) {
-//    Atom tom("tom");
-//    Number N(25);
-//    ASSERT_FALSE(tom.match(N));
-//}
+TEST (Atom, matchFailureDiffConstant) {
+    Atom tom("tom");
+    Number N(25);
+    ASSERT_FALSE(tom.match(N));
+}
 
 // ?- tom = X.
 // X = tom.
 TEST (Atom, matchSuccessToVariable) {
-
+    Atom tom("tom");
+    Variable X("X");
+    ASSERT_TRUE(tom.match(X)); 
 }
 
 // ?- X=tom, tom=X.
 // X = tom.
 TEST (Atom, matchSuccessToVariableInstantedToDiffConstant) {
-
+    Variable X("X");
+    Atom tom("tom");
+    ASSERT_TRUE(X.match(tom));
+    ASSERT_TRUE(tom.match(X));
 }
 
 // ?- X=jerry, tom=X.
 // false.
 TEST (Atom, matchFailureToVariableInstantedToDiffConstant) {
-
+    Variable X("X");
+    Atom jerry("jerry");
+    Atom tom("tom");
+    ASSERT_TRUE(X.match(jerry));
+    ASSERT_FALSE(tom.match(X));
 }
 
 // ?- X = 5.
 // X = 5.
 TEST (Variable, matchSuccessToNumber) {
- 
+//    Variable X("X");
+//    Number N(5);
+//    ASSERT_TRUE(X.match(N));
 }
 
 // ?- X=25, X= 100.
