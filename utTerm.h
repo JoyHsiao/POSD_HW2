@@ -118,6 +118,6 @@ TEST(Variable, reAssignTheSameAtom){
     Variable X("X");
     Atom tom("tom");
     ASSERT_TRUE(X.match(tom));
-    ASSERT_TRUE(tom.match(X));
+    ASSERT_TRUE(X.match(tom));
 }
 #endif
