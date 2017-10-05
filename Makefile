@@ -1,5 +1,3 @@
-INC_DIR = include
-
 all: hw2
 
 hw2: hw2.o
@@ -9,7 +7,7 @@ else
 	g++ -g3 -o hw2 hw2.o -lgtest -lpthread
 endif
 
-hw2.o: $(INC_DIR)/container.h $(INC_DIR)/number.h $(INC_DIR)/atom.h $(INC_DIR)/variable.h utTerm.h hw2.cpp
+hw2.o: container.h number.h atom.h variable.h utTerm.h hw2.cpp
 	g++ -std=gnu++0x -c hw2.cpp
 
 clean:
